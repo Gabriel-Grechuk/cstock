@@ -35,51 +35,51 @@ int process_args(int argc, char *argv[])
     {
       // Flags without arguments.
       case 'l':
-        printf("option -l.\n");
+        //printf("option -l.\n");
         flag_l = true;
         break;
 
       case 'C':
-        printf("option -C.\n");
+        //printf("option -C.\n");
         flag_C = true;
         break;
 
       case 'E':
-        printf("option -E.\n");
+        //printf("option -E.\n");
         flag_E = true;
         break;
 
       case 'A':
-        printf("option -A.\n");
+        //printf("option -A.\n");
         flag_A = true;
         break;
 
       case 'R':
-        printf("option -R.\n");
+        //printf("option -R.\n");
         flag_R = true;
         break;
 
       // Flags with flags.
       case 's':
-        printf("option -s.\n");
+        //printf("option -s.\n");
         flag_s = true;
         flag_s_value = optarg;
         break;
 
       case 'n':
-        printf("option -n.\n");
+        //printf("option -n.\n");
         flag_n = true;
         flag_n_value = optarg;
         break;
 
       case 'c':
-        printf("option -c.\n");
+        //printf("option -c.\n");
         flag_c = true;
         flag_c_value = (item_code) atoi(optarg);
         break;
 
       case 'q':
-        printf("option -q.\n");
+        //printf("option -q.\n");
         flag_q = true;
         flag_q_value = (item_code) atoi(optarg);
         break;
@@ -123,36 +123,25 @@ int process_args(int argc, char *argv[])
 
   // Making the calls for the options.
   if(flag_l)
-  {
     return list_all();
-  }
 
   if(flag_s)
-  {
     return search_by_name(flag_s_value);
-  }
 
   if(flag_c)
-  {
     if((!flag_C) && (!flag_E) && (!flag_A) && (!flag_R))
       return search_by_code(flag_c_value);
-  }
 
   if(flag_C)
-  {
     if(flag_n && flag_q)
-    {
       return register_item(flag_q_value, flag_n_value);
-    }
     else
     {
       fprintf(stderr, "Something where wrong with command lines processing.\n");
       return fatal;
     }
-  }
 
   if (flag_E)
-  {
     if(flag_n)
       return delete_item_by_name(flag_n_value);
     else if (flag_c)
@@ -162,10 +151,8 @@ int process_args(int argc, char *argv[])
       fprintf(stderr, "Something where wrong with command lines processing.\n");
       return fatal;
     }
-  }
 
   if(flag_A)
-  {
     if(flag_n && flag_q)
       return add_item_by_name(flag_q_value, flag_n_value);
     else if(flag_c && flag_q)
@@ -175,10 +162,8 @@ int process_args(int argc, char *argv[])
       fprintf(stderr, "Something where wrong with command lines processing.\n");
       return fatal;
     }
-  }
 
   if(flag_R)
-  {
     if(flag_n && flag_q)
       return withdrawal_item_by_name(flag_q_value, flag_n_value);
     else if(flag_c && flag_q)
@@ -188,6 +173,5 @@ int process_args(int argc, char *argv[])
       fprintf(stderr, "Something where wrong with command lines processing.\n");
       return fatal;
     }
-  }
 }
 
