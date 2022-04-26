@@ -95,7 +95,4 @@ Pelo código
 
     cstock -R -c CODIGO -q QUANTIDADE
 
-### Abrir cstock em modo GUI
-
-    cstock --gui
 
